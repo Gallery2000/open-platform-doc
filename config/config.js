@@ -5,7 +5,10 @@ import proxy from './proxy';
 const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
-  hash: true,
+  history:{
+    type: 'hash'
+  },
+  hash: false,
   antd: {},
   dva: {
     hmr: true,
@@ -40,12 +43,12 @@ export default defineConfig({
             {
               path: '/guide',
               name: '接入指南',
-              icon: 'AppstoreOutlined',
+              icon: 'DashboardOutlined',
               component: './guide',
             },
             {
               path: '/api',
-              name: '接入指南',
+              name: '接口',
               icon: 'AppstoreOutlined',
               routes:[
                 {
@@ -53,18 +56,28 @@ export default defineConfig({
                   name: '话费充值',
                   component: './api/topUp',
                 },
+                {
+                  path: '/api/checkBalance',
+                  name: '查看余额',
+                  component: './api/checkBalance',
+                },
+                {
+                  path: '/api/checkInformation',
+                  name: '检查信息',
+                  component: './api/checkInformation',
+                },
               ]
             },
             {
               path: '/errorCode',
               name: '错误代码',
-              icon: 'AppstoreOutlined',
+              icon: 'ExclamationCircleOutlined',
               component: './errorCode',
             },
             {
               path: '/sign',
               name: '验签工具',
-              icon: 'AppstoreOutlined',
+              icon: 'ToolOutlined',
               component: './sign',
             },
             {

@@ -34,9 +34,10 @@ const headerDemo = {
 }
 const SignDemo = {
   java:`  Map<String, String> data = new HashMap<String, String>();
-  data.put("modifyTimeStart", "2016-07-13 10:44:30");
-  data.put("pageNo", "1");
-  data.put("pageSize", "20");
+  data.put("mobile_operators", "tplus");
+  data.put("telephone_number", "2076005343");
+  data.put("out_trade_no", "2016071414055032");
+  data.put("top_up_amount", "5000");
   //timestamp 为调用Api的公共参数，详细说明参考接入指南
   data.put("timestamp", '1468476350');//假设当前时间为2016/7/14 14:5:50
   //对键排序
@@ -75,9 +76,10 @@ const SignDemo = {
   }`,
   "c#":`var args = new Dictionary<string, string>()
   {
-      {"modifyTimeStart","2016-07-13 10:44:30"},
-      {"pageNo","1"},
-      {"pageSize","20"},
+      {"mobile_operators","tplus"},
+      {"telephone_number","2076005343"},
+      {"out_trade_no","2016071414055032"},
+      {"top_up_amount","5000"},
       //timestamp 为调用Api的公共参数，详细说明参考接入指南
       {"timestamp",'1468476350'} //假设当前时间为2016/7/14 14:5:50
   };
@@ -111,9 +113,10 @@ const SignDemo = {
       return byte2String;
   }`,
   php:`  $params = array();
-  $params['modifyTimeStart'] = '2016-07-13 10:44:30';
-  $params['pageNo'] = '1';
-  $params['pageSize'] = '20';
+  $params['mobile_operators'] = 'tplus';
+  $params['telephone_number'] = '2076005343';
+  $params['out_trade_no'] = '2016071414055032';
+  $params['top_up_amount'] = '5000';
   //timestamp 为调用Api的公共参数，详细说明参考接入指南
   $params['timestamp'] = time();//假设当前时间为2016/7/14 14:5:50
   ksort($params);
@@ -131,18 +134,21 @@ const SignDemo = {
 }
 
 const ExampleDemo = {
-  java:` public String logisticsDummySend() {
+  java:` public String Topup() {
       String appSecret = "******************";
       String accessToken = "*************************";
 
       CloseableHttpClient httpclient = HttpClients.createDefault();
-      HttpPost httpPost = new HttpPost("http://gw.api.agiso.com/alds/Trade/LogisticsDummySend");
+      HttpPost httpPost = new HttpPost("http://api.defu2020.com/api/gateway/topUp");
       // 设置头部
       httpPost.addHeader("Authorization", "Bearer " + accessToken);
       // 业务参数
       Map<String, String> data = new HashMap<String, String>();
-      String tids = "1234567789,9874561233";
-      data.put("tids", tids);
+
+      data.put("mobile_operators", "tplus");
+      data.put("telephone_number", "2076005343");
+      data.put("out_trade_no", "2016071414055032");
+      data.put("top_up_amount", "5000");
       Long timestamp = System.currentTimeMillis() / 1000;
       data.put("timestamp", timestamp.toString());
       // 参数签名
@@ -174,7 +180,7 @@ const ExampleDemo = {
 
   // 参数签名
   public String sign(Map<String, String> params, String appSecret)
-          throws NoSuchAlgorithmException, UnsupportedEncodingException {
+      throws NoSuchAlgorithmException, UnsupportedEncodingException {
       String[] keys = params.keySet().toArray(new String[0]);
       Arrays.sort(keys);
 
@@ -209,18 +215,22 @@ const ExampleDemo = {
       MessageDigest md5 = MessageDigest.getInstance("MD5");
       return md5.digest(data.getBytes("UTF-8"));
   }`,
-  "c#":`  public String LogisticsDummySend()
+  "c#":`  public String Topup()
   {
       string accessToken = "*************";
       string appSecret = "*************";
-      WebRequest apiRequest = WebRequest.Create("http://gw.api.agiso.com/alds/Trade/LogisticsDummySend");
+      WebRequest apiRequest = WebRequest.Create("http://api.defu2020.com/api/gateway/topUp");
       apiRequest.Method = "POST";
       apiRequest.ContentType = "application/x-www-form-urlencoded";
       apiRequest.Headers.Add("Authorization", "Bearer " + accessToken);
       //业务参数
       TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
       var args = new Dictionary<string,string>()
-          {    {"tids","123456789,987465123"},
+          {
+              {"mobile_operators","tplus"},
+              {"telephone_number","2076005343"},
+              {"out_trade_no","2016071414055032"},
+              {"top_up_amount","5000"},
               {"timestamp",Convert.ToInt64(ts.TotalSeconds).ToString()}
           };
       args.Add("sign", Sign(args, appSecret));
@@ -292,13 +302,16 @@ const ExampleDemo = {
       }
       return byte2String;
   }`,
-  php:`  function LogisticsDummySend(){
+  php:`  function Topup(){
       $appSecret = "******************";
       $accessToken = "*************************";
 
         //业务参数
       $params = array();
-      $params['tids'] = '123456789,987456123';
+      $params['mobile_operators'] = 'tplus';
+      $params['telephone_number'] = '2076005343';
+      $params['out_trade_no'] = '2016071414055032';
+      $params['top_up_amount'] = '5000';
       $params['timestamp'] = time();
       $params['sign'] = sign($params,$appSecret);
 
@@ -317,7 +330,7 @@ const ExampleDemo = {
       curl_setopt($ci, CURLOPT_HEADER, FALSE);
       curl_setopt($ci, CURLOPT_POST, TRUE);
       curl_setopt($ci, CURLOPT_POSTFIELDS, $params);
-      curl_setopt($ci, CURLOPT_URL, 'http://gw.api.agiso.com/alds/Trade/LogisticsDummySend' );
+      curl_setopt($ci, CURLOPT_URL, 'http://api.defu2020.com/api/gateway/topUp' );
       curl_setopt($ci, CURLOPT_HTTPHEADER, $headers );
       curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE );
       $response = curl_exec($ci);
@@ -343,24 +356,7 @@ const ExampleDemo = {
 const PageGuide = function (){
   return(
     <Typography style={{maxWidth:1200}}>
-      <Title level={4}>1、接入流程</Title>
-      <Paragraph>
-        <ul>
-          <li>
-            <p>
-              <div>【开发者操作】登录后台申请AppIds。</div>
-              <div>入口：<a href="http://open.agiso.com/#/my/application/app-list">http://open.agiso.com/#/my/application/app-list</a></div>
-            </p>
-          </li>
-          <li>
-            <p>
-              <div>【开发者操作】登录后台申请AppIds。</div>
-              <div>入口：<a href="http://open.agiso.com/#/my/application/app-list">http://open.agiso.com/#/my/application/app-list</a></div>
-            </p>
-          </li>
-        </ul>
-      </Paragraph>
-      <Title level={4}>2、调用接口详解</Title>
+      <Title level={4}>1、调用接口详解</Title>
       <Text>调用任何一个API都必须把AccessToken添加到Header ,格式为"Authorization: Bearer access_token"，其中Bearer后面有一个空格。同时还需传入以下公共参数：</Text>
       <Table dataSource={apiDataSource} pagination={false} bordered>
         <Column title="参数名" dataIndex="title" />
@@ -368,7 +364,7 @@ const PageGuide = function (){
         <Column title="类型" dataIndex="type" />
         <Column title="说明" dataIndex="description" />
       </Table>
-      <Title level={4}>3、签名算法</Title>
+      <Title level={4}>2、签名算法</Title>
       <Paragraph>
         <ul>
           <li>【对所有API请求参数（包括公共参数和业务参数，但除去sign参数和byte[]类型的参数），根据参数名称的ASCII码表的顺序排序。如：foo=1, bar=2, foo_bar=3, foobar=4排序后的顺序是bar=2, foo=1, foo_bar=3, foobar=4。</li>
@@ -376,7 +372,7 @@ const PageGuide = function (){
           <li>把拼装好的字符串采用utf-8编码，在拼装的字符串前后加上app的secret后，使用MD5算法进行摘要，如：md5(secret+bar2foo1foo_bar3foobar4+secret)；</li>
         </ul>
       </Paragraph>
-      <Title level={4}>4、Header设置示例代码</Title>
+      <Title level={4}>3、Header设置示例代码</Title>
       <Tabs type="card" >
         <TabPane tab="Java" key="1">
           <div className={styles.code}>{headerDemo.java}</div>
@@ -388,7 +384,7 @@ const PageGuide = function (){
           <div className={styles.code}>{headerDemo.php}</div>
         </TabPane>
       </Tabs>
-      <Title level={4}>5、签名算法示例代码</Title>
+      <Title level={4}>4、签名算法示例代码</Title>
       <Tabs type="card" >
         <TabPane tab="Java" key="1">
           <div className={styles.code}>

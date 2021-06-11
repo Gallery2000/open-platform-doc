@@ -38,19 +38,7 @@ const dataSource = [
     title:'telephone_number',
     required:'是',
     type:'string',
-    description:'0205/0207 开头的老挝手机号码',
-  },
-  {
-    title:'top_up_amount',
-    required:'是',
-    type:'string',
-    description:'充值金额 5,000-500,000',
-  },
-  {
-    title:'out_trade_no',
-    required:'是',
-    type:'string',
-    description:'长度16位的订单号',
+    description:'0205/0207开头的老挝手机号码',
   }
 ];
 const columns = [
@@ -76,9 +64,7 @@ const columns = [
 const response = `
 {
     "data": {
-        "trans_id":"1234567890123456",
-        "msisdn":"2076005343",
-        "amount":"500",
+      "msisdn":"2076005343"  //返回手机号既代表该手机号有效
     },
     "status": {
         "code": 0,
@@ -91,7 +77,7 @@ const topUp = function (){
     return(
       <Typography style={{maxWidth:1200}}>
         <Title level={5}>请求URL：</Title>
-        <Text code>http://api.defu2020.com/api/gateway/topUp</Text>
+        <Text code>http://api.defu2020.com/api/gateway/checkInformation</Text>
         <Title level={5}>请求方式：</Title>
         <Text>POST</Text>
         <Title level={5}>公共Header：</Title>

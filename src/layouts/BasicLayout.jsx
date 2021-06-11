@@ -6,25 +6,7 @@
 import ProLayout from '@ant-design/pro-layout';
 import React from 'react';
 import { Link, useIntl, connect } from 'umi';
-import { Result, Button } from 'antd';
 import Authorized from '@/utils/Authorized';
-import { getAuthorityFromRouter } from '@/utils/utils';
-
-const noMatch = (
-  <Result
-    status={403}
-    title="403"
-    subTitle="Sorry, you are not authorized to access this page."
-    extra={
-      <Button type="primary">
-        <Link to="/user/login">Go Login</Link>
-      </Button>
-    }
-  />
-);
-/**
- * use Authorized check all menu item
- */
 
 const menuDataRender = (menuList) =>
   menuList.map((item) => {
@@ -57,11 +39,8 @@ const BasicLayout = (props) => {
         payload,
       });
     }
-  }; // get children authority
-
-  const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
-    authority: undefined,
   };
+
   const {} = useIntl();
   return (
     <ProLayout
@@ -92,9 +71,7 @@ const BasicLayout = (props) => {
       {...props}
       {...settings}
     >
-      <Authorized authority={authorized.authority} noMatch={noMatch}>
-        {children}
-      </Authorized>
+      {children}
     </ProLayout>
   );
 };
