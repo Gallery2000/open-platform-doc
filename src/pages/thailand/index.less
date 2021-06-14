@@ -1,0 +1,22 @@
+table.table-striped {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  tbody{
+    vertical-align: middle;
+    tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+    tr, th, td {
+      vertical-align: middle !important;
+      border: 1px solid black !important;
+    }
+    td{
+      padding: 8px;
+      line-height: 1.42857143;
+      &:nth-child(2) {
+        text-align: center;
+      }
+    }
+  }
+}

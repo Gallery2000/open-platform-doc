@@ -47,24 +47,46 @@ export default defineConfig({
               component: './guide',
             },
             {
-              path: '/api',
-              name: '接口',
+              name:'老挝接口',
               icon: 'AppstoreOutlined',
+              path:'/laos',
               routes:[
                 {
-                  path: '/api/topUp',
+                  path: '/laos/topUp',
                   name: '话费充值',
-                  component: './api/topUp',
+                  component: './laos/topUp',
                 },
                 {
-                  path: '/api/checkBalance',
+                  path: '/laos/checkBalance',
                   name: '查看余额',
-                  component: './api/checkBalance',
+                  component: './laos/checkBalance',
                 },
                 {
-                  path: '/api/checkInformation',
+                  path: '/laos/checkInformation',
                   name: '检查信息',
-                  component: './api/checkInformation',
+                  component: './laos/checkInformation',
+                },
+              ]
+            },
+            {
+              name:'泰国接口',
+              icon: 'AppstoreOutlined',
+              path:'/thailand',
+              routes:[
+                {
+                  path: '/thailand/topUp',
+                  name: '话费流量充值',
+                  component: './thailand/topUp',
+                },
+                {
+                  path: '/thailand/checkInformation',
+                  name: '号码运营商查询',
+                  component: './thailand/checkInformation',
+                },
+                {
+                  path: '/thailand/packageComplete',
+                  name: '话费流量套餐大全',
+                  component: './thailand/packageComplete',
                 },
               ]
             },
