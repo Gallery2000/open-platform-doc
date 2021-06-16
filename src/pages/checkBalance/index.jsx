@@ -27,14 +27,6 @@ const apiDataSource = [
   }
 ];
 
-const dataSource = [
-  {
-    title:'telephone_number',
-    required:'是',
-    type:'string',
-    description:'06/08/09开头的泰国手机号码',
-  }
-];
 const columns = [
   {
     title: '参数名',
@@ -57,7 +49,10 @@ const columns = [
 
 const response = `
 {
-    "data": "truemove", //ais / truemove / dtac,
+    "data": {
+      "account_balance":"87.02",//账户余额
+      "discount_amount":"0.29",//折扣金额
+    },
     "status": {
         "code": 0,
         "message": "SUCCESS"
@@ -69,11 +64,13 @@ const topUp = function (){
     return(
       <Typography style={{maxWidth:1200}}>
         <Title level={5}>请求URL：</Title>
-        <Text code>http://api.hfniudao.com/api/gateway/thailand/checkInformation</Text>
+        <Text code>http://api.hfniudao.com/api/gateway/checkBalance</Text>
         <Title level={5}>请求方式：</Title>
-        <Text>GET</Text>
-        <Title level={5}>参数：</Title>
-        <Table dataSource={dataSource} pagination={false} bordered columns={columns}/>
+        <Text>POST</Text>
+        <Title level={5}>公共Header：</Title>
+        <Table dataSource={headerDataSource} pagination={false} bordered columns={columns}/>
+        <Title level={5}>公共参数：</Title>
+        <Table dataSource={apiDataSource} pagination={false} bordered columns={columns}/>
         <Title level={5}>返回示例</Title>
         <div className="my-code">{response}</div>
         <Title level={5}>备注</Title>

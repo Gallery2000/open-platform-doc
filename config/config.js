@@ -47,6 +47,12 @@ export default defineConfig({
               component: './guide',
             },
             {
+              path: '/checkBalance',
+              icon: 'AppstoreOutlined',
+              name: '查看余额接口',
+              component: './checkBalance',
+            },
+            {
               name:'老挝接口',
               icon: 'AppstoreOutlined',
               path:'/laos',

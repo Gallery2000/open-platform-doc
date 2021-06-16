@@ -82,9 +82,10 @@ const columns = [
 const response = `
 {
     "data": {
-        "trans_id":"1000001",
-        "msisdn":"2076005343",
-        "amount":"500",
+        "trans_id":"82142",
+        "msisdn":"0937101297",
+        "amount":"2.01",//本次充值消耗的账户余额
+        "account_balance":"89.03",//当前账户余额
     },
     "status": {
         "code": 0,
@@ -97,7 +98,7 @@ const reply = `
 {
     "trans_id": "1000001", //系统订单号
     "status": true, //充值状态
-    "dest_ref": "1234567890123456", //用户单号
+    "out_trade_no": "1234567890123456", //用户单号
     "msg_zh": "号码未激活" //信息
 }
 `;
@@ -106,7 +107,7 @@ const topUp = function (){
     return(
       <Typography style={{maxWidth:1200}}>
         <Title level={5}>请求URL：</Title>
-        <Text code>http://api.defu2020.com/api/gateway/thailand/topUp</Text>
+        <Text code>http://api.hfniudao.com/api/gateway/thailand/topUp</Text>
         <Title level={5}>请求方式：</Title>
         <Text>POST</Text>
         <Title level={5}>公共Header：</Title>

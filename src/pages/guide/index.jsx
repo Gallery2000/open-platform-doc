@@ -139,7 +139,7 @@ const ExampleDemo = {
       String accessToken = "*************************";
 
       CloseableHttpClient httpclient = HttpClients.createDefault();
-      HttpPost httpPost = new HttpPost("http://api.defu2020.com/api/gateway/topUp");
+      HttpPost httpPost = new HttpPost("http://api.hfniudao.com/api/gateway/topUp");
       // 设置头部
       httpPost.addHeader("Authorization", "Bearer " + accessToken);
       // 业务参数
@@ -219,7 +219,7 @@ const ExampleDemo = {
   {
       string accessToken = "*************";
       string appSecret = "*************";
-      WebRequest apiRequest = WebRequest.Create("http://api.defu2020.com/api/gateway/topUp");
+      WebRequest apiRequest = WebRequest.Create("http://api.hfniudao.com/api/gateway/topUp");
       apiRequest.Method = "POST";
       apiRequest.ContentType = "application/x-www-form-urlencoded";
       apiRequest.Headers.Add("Authorization", "Bearer " + accessToken);
@@ -330,7 +330,7 @@ const ExampleDemo = {
       curl_setopt($ci, CURLOPT_HEADER, FALSE);
       curl_setopt($ci, CURLOPT_POST, TRUE);
       curl_setopt($ci, CURLOPT_POSTFIELDS, $params);
-      curl_setopt($ci, CURLOPT_URL, 'http://api.defu2020.com/api/gateway/topUp' );
+      curl_setopt($ci, CURLOPT_URL, 'http://api.hfniudao.com/api/gateway/topUp' );
       curl_setopt($ci, CURLOPT_HTTPHEADER, $headers );
       curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE );
       $response = curl_exec($ci);

@@ -77,8 +77,9 @@ const response = `
 {
     "data": {
         "trans_id":"1234567890123456",
-        "msisdn":"2076005343",
-        "amount":"500",
+        "msisdn":"02055359464",
+        "amount":"3.32",//本次充值消耗的账户余额
+        "account_balance":"96.68",//当前账户余额
     },
     "status": {
         "code": 0,
@@ -91,7 +92,7 @@ const topUp = function (){
     return(
       <Typography style={{maxWidth:1200}}>
         <Title level={5}>请求URL：</Title>
-        <Text code>http://api.defu2020.com/api/gateway/laos/topUp</Text>
+        <Text code>http://api.hfniudao.com/api/gateway/laos/topUp</Text>
         <Title level={5}>请求方式：</Title>
         <Text>POST</Text>
         <Title level={5}>公共Header：</Title>

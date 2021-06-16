@@ -77,7 +77,7 @@ const topUp = function (){
     return(
       <Typography style={{maxWidth:1200}}>
         <Title level={5}>请求URL：</Title>
-        <Text code>http://api.defu2020.com/api/gateway/laos/checkInformation</Text>
+        <Text code>http://api.hfniudao.com/api/gateway/laos/checkInformation</Text>
         <Title level={5}>请求方式：</Title>
         <Text>POST</Text>
         <Title level={5}>公共Header：</Title>
