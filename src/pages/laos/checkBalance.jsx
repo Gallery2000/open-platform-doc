@@ -32,13 +32,13 @@ const dataSource = [
     title:'mobile_operators',
     required:'是',
     type:'string',
-    description:'运营商参数：tplus | laotelecom',
+    description:'运营商参数：tplus | laotelecom | unitel',
   },
   {
     title:'telephone_number',
     required:'是',
     type:'string',
-    description:'0205/0207开头的老挝手机号码',
+    description:'0205/0207/0209 开头的老挝手机号码',
   },
 ];
 const columns = [
